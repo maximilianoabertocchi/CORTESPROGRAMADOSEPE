@@ -1,0 +1,42 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Configuración
+URL_EPE = "https://santafe.gov.ar" # Reemplazar por la URL exacta de comunicados
+LOCALIDADES = ["Rosario", "Granadero Baigorria", "Roldan", "San Lorenzo"]
+
+def buscar_cortes():
+    try:
+        # 1. Descargar el contenido de la página
+        respuesta = requests.get(URL_EPE)
+        respuesta.raise_for_status()
+        
+        # 2. Parsear el HTML
+        soup = BeautifulSoup(respuesta.text, 'html.parser')
+        
+        # 3. Buscar los bloques de texto de los cortes (ajustar etiquetas según el diseño de la web)
+        cortes_del_dia = soup.find_all('div', class_='corte-item') # Ejemplo de clase CSS
+        
+        cortes_encontrados = []
+        
+        for corte in cortes_del_dia:
+            texto_corte = corte.get_text()
+            
+            # Verificar si el corte pertenece a tus ciudades de interés
+            if any(localidad.lower() in texto_corte.lower() for localidad in LOCALIDADES):
+                cortes_encontrados.append(texto_corte.strip())
+                
+        return cortes_encontrados
+
+    except Exception as e:
+        return [f"Error al conectar con la web de EPE: {e}"]
+
+# Ejecutar la búsqueda
+resultados = buscar_cortes()
+if resultados:
+    print("⚠️ Cortes programados detectados:")
+    for r in resultados:
+        print(f"- {r}\n")
+else:
+    print("✅ No hay cortes programados para tus localidades hoy.")
+requests.post(8743657976:AAGOQIrTS4vaNtfBA6tz1G7I0L6Jcny110A)8743657976:AAGOQIrTS4vaNtfBA6tz1G7I0L6Jcny110A
