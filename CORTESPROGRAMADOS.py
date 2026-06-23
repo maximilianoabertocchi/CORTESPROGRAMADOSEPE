@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Configuración
-URL_EPE = "https://santafe.gov.ar" # Reemplazar por la URL exacta de comunicados
+URL_EPE = "https://www.epe.santafe.gov.ar/reclamosweb/cortes.php/cortes.php" # Reemplazar por la URL exacta de comunicados
 LOCALIDADES = ["Rosario", "Granadero Baigorria", "Roldan", "San Lorenzo"]
 
 def buscar_cortes():
@@ -39,4 +39,4 @@ if resultados:
         print(f"- {r}\n")
 else:
     print("✅ No hay cortes programados para tus localidades hoy.")
-requests.post(8743657976:AAGOQIrTS4vaNtfBA6tz1G7I0L6Jcny110A)8743657976:AAGOQIrTS4vaNtfBA6tz1G7I0L6Jcny110A
+requests.post(8743657976:AAGOQIrTS4vaNtfBA6tz1G7I0L6Jcny110A)
